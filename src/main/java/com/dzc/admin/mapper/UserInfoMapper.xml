@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzc.admin.dao.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.dzc.admin.model.UserInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, role, name, avatar, introduction,department
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.dzc.admin.model.UserInfo">
+    insert into t_user_info (id, role, name, 
+      avatar, introduction,department)
+    values (#{id,jdbcType=INTEGER}, #{role,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},#{department,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.dzc.admin.model.UserInfo">
+        insert into t_user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="role != null">
+                role,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="avatar != null">
+                avatar,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="department != null">
+                department,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                #{department,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dzc.admin.model.UserInfo">
+        update t_user_info
+        <set>
+            <if test="role != null">
+                role = #{role,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="department != null">
+                department=#{department,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dzc.admin.model.UserInfo">
+    update t_user_info
+    set role = #{role,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      department=#{department,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

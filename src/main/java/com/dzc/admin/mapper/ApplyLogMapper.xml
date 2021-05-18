@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dzc.admin.dao.ApplyLogMapper">
+  <resultMap id="BaseResultMap" type="com.dzc.admin.model.ApplyLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mess" jdbcType="VARCHAR" property="mess" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mess, status, uid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_apply_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_apply_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dzc.admin.model.ApplyLog">
+    insert into t_apply_log (id, mess, status, 
+      uid)
+    values (#{id,jdbcType=INTEGER}, #{mess,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{uid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dzc.admin.model.ApplyLog">
+    insert into t_apply_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mess != null">
+        mess,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mess != null">
+        #{mess,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dzc.admin.model.ApplyLog">
+    update t_apply_log
+    <set>
+      <if test="mess != null">
+        mess = #{mess,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dzc.admin.model.ApplyLog">
+    update t_apply_log
+    set mess = #{mess,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getAllLogs" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from
+    t_apply_log
+    where uid=#{uid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByUid">
+    delete from t_apply_log
+    where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+</mapper>
