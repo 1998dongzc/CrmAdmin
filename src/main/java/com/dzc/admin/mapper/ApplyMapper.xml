@@ -126,7 +126,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="selectAllApplys" resultType="com.dzc.admin.vo.ApplyVo">
-    select
+    select distinct
     a.id as id, room_id as roomId, device_name as deviceName, t.id as uid,local_name as localName,num, t.name as name,create_time as createTime, code
     from
     t_apply a

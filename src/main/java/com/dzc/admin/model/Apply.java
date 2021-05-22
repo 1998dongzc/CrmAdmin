@@ -1,5 +1,6 @@
 package com.dzc.admin.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Apply {
 
     private Integer num;
 
+    @JsonProperty("uId")
     private Integer uId;
 
     private Date createTime;
