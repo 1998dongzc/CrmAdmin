@@ -32,5 +32,8 @@ public class UserInfoVo {
      * 权限
      */
     private String role;
-
+    /**
+     * 院系部门
+     */
+    private String department;
 }
