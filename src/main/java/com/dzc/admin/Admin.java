@@ -10,10 +10,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @MapperScan("com.dzc.admin.dao")
 @AutoConfigurationPackage
 @EnableAspectJAutoProxy
-public class AdminApplication {
+public class Admin {
 
     public static void main(String[] args) {
-        SpringApplication.run(AdminApplication.class, args);
+        SpringApplication.run(Admin.class, args);
     }
 
 }
