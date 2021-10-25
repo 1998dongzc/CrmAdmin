@@ -12,13 +12,16 @@ import com.dzc.admin.service.UserService;
 import com.dzc.admin.vo.UserInfoVo;
 import com.dzc.admin.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -40,6 +43,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+//    @Value("${filepath}")
+//    private String serverFilePath;
 //    @Autowired UserInfoMapper userInfoMapper;
 
     @Override
@@ -190,4 +195,25 @@ public class UserServiceImpl implements UserService {
             return Result.success("删除用户成功");
     }
 
+    @Override
+    public Result updateAvtar(MultipartFile uploadFile) {
+//        System.out.println(serverFilePath);
+        //获取文件名
+        String fileName = uploadFile.getOriginalFilename();
+        //获取文件后缀名
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        //重新生成文件名
+        fileName = UUID.randomUUID() + suffixName;
+        //指定本地文件夹存储图片
+//        String filePath = serverFilePath;
+//        try {
+//            //将图片保存到static文件夹里
+//            fileUpload.transferTo(new File(filePath + fileName));
+//            return new Massage(0, "success to upload");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new Massage(-1, "fail to upload");
+//        }
+        return null;
+    }
 }

@@ -1,7 +1,9 @@
 server:
   servlet:
     context-path: /admin
-  port: 8080
+  port: 80
+
+#filepath: D:/file/
 
 mybatis:
   mapper-locations: classpath:com/dzc/admin/mapper/**/*.xml
@@ -16,19 +18,20 @@ spring:
     # 数据源名称
     name: javaMysql
     # 数据库连接地址
+#    url: jdbc:mysql://121.4.252.231:3306/admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     url: jdbc:mysql://121.4.252.231:3306/admin?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     # 数据库用户名&密码：
     username: root
-    password: Dzc021258
+    password: dzc021258
     dbcp2:
       min-idle: 5         #数据库连接池的最小维持连接数
       initial-size: 5     #初始化提供的连接数
       max-total: 5          #最大的连接数
       max-wait-millis: 200        #等待连接获取的最大超时时间
   redis:
-    port: 6379
+    port: 6381
     host: 121.4.252.231
-    password: Dzc021258
+    password: dzc123
     database: 0
 logging:
   level:

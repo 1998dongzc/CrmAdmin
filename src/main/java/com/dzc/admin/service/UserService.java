@@ -5,6 +5,7 @@ import com.dzc.admin.model.User;
 import com.dzc.admin.model.UserInfo;
 import com.dzc.admin.vo.UserInfoVo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,4 +36,6 @@ public interface UserService {
     Result signUpOneUser(UserInfoVo userInfoVo);
 
     Result delUser(User user);
+
+    Result updateAvtar(MultipartFile uploadFile);
 }

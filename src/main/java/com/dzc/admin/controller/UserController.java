@@ -9,6 +9,7 @@ import com.dzc.admin.service.UserService;
 import com.dzc.admin.vo.UserInfoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,7 +38,7 @@ public class UserController {
      * 用户注册
      */
     @PostMapping("/signUp")
-    public Result signUp(@RequestBody UserInfoVo userInfoVo){
+    public Result signUp(@RequestBody UserInfoVo userInfoVo) {
         System.out.println(userInfoVo);
         return userService.signUpOneUser(userInfoVo);
     }
@@ -55,43 +56,49 @@ public class UserController {
 
     @ValidToken
     @PostMapping("/get")
-    public Result getUser(@RequestBody User user){
+    public Result getUser(@RequestBody User user) {
         return userService.getUser(user);
     }
 
     @ValidToken
     @PostMapping("/updateUser")
-    public Result updateUser(@RequestBody User user){
+    public Result updateUser(@RequestBody User user) {
         return userService.updateUser(user);
     }
 
     @ValidToken
     @GetMapping("/getInfo/{id}")
-    public Result getUserName(@PathVariable("id") Integer id){
+    public Result getUserName(@PathVariable("id") Integer id) {
         return userService.getUserInfoById(id);
     }
 
     @ValidToken
     @PostMapping("/updateInfo")
-    public Result updateUserInfo(@RequestBody UserInfo userInfo){
+    public Result updateUserInfo(@RequestBody UserInfo userInfo) {
         return userService.updateUserInfo(userInfo);
     }
 
     @ValidAdminToken
     @GetMapping("/getAllUser")
-    public Result getAllUser(){
+    public Result getAllUser() {
         return userService.getAllUserInfo();
     }
 
     @ValidAdminToken
     @PostMapping("/changeRole")
-    public Result changeUserRole(@RequestBody UserInfo userInfo){
+    public Result changeUserRole(@RequestBody UserInfo userInfo) {
         return userService.changeRole(userInfo);
     }
 
     @ValidAdminToken
     @PostMapping("/delUser")
-    public Result delUser(@RequestBody User user){
+    public Result delUser(@RequestBody User user) {
         return userService.delUser(user);
+    }
+
+//    @ValidToken
+    @PostMapping("/upavtar")
+    public Result updateAvatar(MultipartFile uploadFile, HttpServletRequest req) {
+        return userService.updateAvtar(uploadFile);
     }
 }
